@@ -6,20 +6,20 @@
 
 将本项目克隆至本地
 
-将程序解压到 `program` 文件夹的任意子文件中 并修改 `config.conf` 的 `VERSION` 为文件夹名称
-如解压到 `./program/FFmpegFreeUI ReadyToRun x64/` 那么 `VERSION` 就是 `FFmpegFreeUI ReadyToRun x64`
-也就是主文件在 `./program/FFmpegFreeUI ReadyToRun x64/FFmpegFreeUI.exe` 中
+将程序解压到 `program` 文件夹的任意子文件中 并修改 `config.conf` 的 `VERSION` 为文件夹名称 <br>
+如解压到 `./program/FFmpegFreeUI ReadyToRun x64/` 那么 `VERSION` 就是 `FFmpegFreeUI ReadyToRun x64` <br>
+也就是主文件在 `./program/FFmpegFreeUI ReadyToRun x64/FFmpegFreeUI.exe` 中 <br>
 (本来是为多版本准备的 一般不用改 默认就是 `FFmpegFreeUI ReadyToRun x64`)
 
-在 `config.conf` 中确认配置
+在 `config.conf` 中确认配置 <br>
 配置中的 wine 必须为原版 wine! 不能是 wine-staging 或 proton!
 
-调用原生 FFmpeg 需要本机有 `/usr/bin/python3` (因为有脚本是 python 写的)
+调用原生 FFmpeg 需要本机有 `/usr/bin/python3` (因为有脚本是 python 写的) <br>
 默认配置下 FFmpeg 位于 `/usr/bin/ffmpeg`
 
-允许 `prepare.sh` 以进行准备工作
-此步骤还需要 `winetricks`
-目前只有安装 `fakechinese` 下载思源黑体伪装成微软雅黑等字体以解决部分字体问题
+允许 `prepare.sh` 以进行准备工作 <br>
+此步骤还需要 `winetricks` <br>
+目前只有安装 `fakechinese` 下载思源黑体伪装成微软雅黑等字体以解决部分字体问题 <br>
 可以手动放入微软雅黑并跳过此步
 
 要运行则执行 `start.sh` 即可
