@@ -1,8 +1,10 @@
+# 3FUI Linux Scripts
+
 本项目是 3FUI 的一键转译运行方案
 
 自动应用微软雅黑字体 提供了一系列脚本 提供了调用原生 FFmpeg 的默认设置
 
-# 使用方法
+## 使用方法
 
 将本项目克隆至本地
 
@@ -24,12 +26,12 @@
 
 要运行则执行 `start.sh` 即可
 
-# 其他问题
+## 其他问题
 
 高分辨率屏幕显示过小 则运行 winecfg.sh 然后在 "显示" 的 "屏幕分辨率" 中调高 DPI 推荐 144
 
 更多问题 参阅 [3FUI Linux 文档](https://github.com/Lake1059/FFmpegFreeUI/blob/main/doc/linux.md)
 
-# 声明
+## 声明
 
 `script` 文件夹下的 `delay.vbs`、`run-ffmpeg.py`、`wait-exit.bat` 均来自 Uyanide
