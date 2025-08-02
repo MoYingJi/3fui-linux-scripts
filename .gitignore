@@ -1,2 +1,4 @@
 /pfx
 /program/*
+/settings/Settings.json
+/fonts/fonts.conf

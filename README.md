@@ -19,10 +19,9 @@
 调用原生 FFmpeg 需要本机有 `/usr/bin/python3` (因为有脚本是 python 写的) <br>
 默认配置下 FFmpeg 位于 `/usr/bin/ffmpeg`
 
-允许 `prepare.sh` 以进行准备工作 <br>
-此步骤还需要 `winetricks` <br>
-目前只有安装 `fakechinese` 下载思源黑体伪装成微软雅黑等字体以解决部分字体问题 <br>
-可以手动放入微软雅黑并跳过此步
+运行 `prepare.sh` 以进行准备工作 <br>
+此步骤会配置中文字体 (默认为 `fonts/SourceHanSerif.ttc`) 解决中文乱码问题<br>
+也可以手动在 `$WINEPREFIX/drive_c/windows/Fonts/` 中放入微软雅黑并跳过此步
 
 要运行则执行 `start.sh` 即可
 
