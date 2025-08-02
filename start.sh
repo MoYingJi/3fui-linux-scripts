@@ -30,6 +30,13 @@ export WINEARCH="$WINE_ARCH"
 # 运行
 
 cd "$prog_path"
-$WINE "$prog_path/FFmpegFreeUI.exe"
+
+if [ "$SKIP_FAKECHINESE" == "y" ]; then
+    $WINE "$prog_path/FFmpegFreeUI.exe"
+else
+    export FONTCONFIG_FILE="$path/fonts/fonts.conf"
+    fc-cache -f "$path/fonts"
+    $WINE "$prog_path/FFmpegFreeUI.exe"
+fi
 
 [ "$WINE_SERVER_KILL" == "y" ] && $WINE_SERVER -k
