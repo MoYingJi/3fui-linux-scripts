@@ -46,4 +46,6 @@ else
     $WINE "$prog_path/FFmpegFreeUI.exe"
 fi
 
+wait
+
 [ "$WINE_SERVER_KILL" == "y" ] && $WINE_SERVER -k

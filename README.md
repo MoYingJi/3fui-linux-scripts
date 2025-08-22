@@ -8,10 +8,15 @@
 
 将本项目克隆至本地
 
-将程序解压到 `program` 文件夹的任意子文件中 并修改 `config.conf` 的 `VERSION` 为文件夹名称 <br>
-如解压到 `./program/FFmpegFreeUI ReadyToRun x64/` 那么 `VERSION` 就是 `FFmpegFreeUI ReadyToRun x64` <br>
-也就是主文件在 `./program/FFmpegFreeUI ReadyToRun x64/FFmpegFreeUI.exe` 中 <br>
+### 解压
+
+将程序的压缩包放到 `program` 文件夹下解压，并修改 `config.conf` 的 `VERSION` 为程序的文件夹名称
+
+如解压到 `./program/FFmpegFreeUI ReadyToRun x64/`，那么 `VERSION` 就是 `FFmpegFreeUI ReadyToRun x64`，主文件在 `./program/FFmpegFreeUI ReadyToRun x64/FFmpegFreeUI.exe` 中
+
 (本来是为多版本准备的 一般不用改 默认就是 `FFmpegFreeUI ReadyToRun x64`)
+
+### 确认配置
 
 在 `config.conf` 中确认配置 <br>
 配置中的 wine 必须为原版 wine! 不能是 wine-staging 或 proton!
@@ -19,9 +24,15 @@
 调用原生 FFmpeg 需要本机有 `/usr/bin/python3` (因为有脚本是 python 写的) <br>
 默认配置下 FFmpeg 位于 `/usr/bin/ffmpeg`
 
-运行 `prepare.sh` 以进行准备工作 <br>
-此步骤会配置中文字体 (默认为 `fonts/SourceHanSerif.ttc`) 解决中文乱码问题<br>
-也可以手动在 `$WINEPREFIX/drive_c/windows/Fonts/` 中放入微软雅黑并跳过此步
+### 准备工作
+
+运行 `prepare.sh` 以进行准备工作
+
+此步骤会配置中文字体 (默认为 `SourceHanSerif.ttc`) 解决中文乱码问题。也可将自己的字体放入 `fonts` 文件夹下并修改配置中的 `FONT_FILE` 和 `FONT_NAME`
+
+也可以手动在 `$WINEPREFIX/drive_c/windows/Fonts/` 中放入微软雅黑并跳过此步，在配置文件中将 `SKIP_FAKECHINESE` 设置为 `y` 即可跳过
+
+### 运行
 
 要运行则执行 `start.sh` 即可
 
@@ -33,4 +44,4 @@
 
 ## 声明
 
-`script` 文件夹下的 `delay.vbs`、`run-ffmpeg.py`、`wait-exit.bat` 均来自 Uyanide
+`script` 文件夹下的 `delay.vbs`、`run-ffmpeg.py`、`wait-exit.bat` 均来自 [Uyanide](https://github.com/Uyanide)
