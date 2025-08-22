@@ -1,0 +1,6 @@
+﻿{
+  "字体": "",
+  "替代进程文件名": "\".\\scripts\\wait-exit.bat\"",
+  "覆盖参数传递": "\".\\scripts\\delay.vbs\" \".\\scripts\\run-ffmpeg.py\" <args>",
+  "转译模式": true
+}

@@ -19,6 +19,7 @@ prog_path="$path/program/$VERSION"
 
 # 准备
 
+mkdir -p "$path/settings"
 chmod +x "$path/scripts/run-ffmpeg.py"
 
 ln -sf "$path/settings/"* "$prog_path/"
@@ -30,6 +31,12 @@ export WINEARCH="$WINE_ARCH"
 # 运行
 
 cd "$prog_path"
+
+if [ "$SKIP_FAKECHINESE" != "y" ] && [ ! -f "$path/fonts/fonts.conf" ]; then
+    echo "ERROR: 'fonts.conf' not found! run 'prepare.sh' first!"
+    echo "WARNING: fakechinese will be skipped!"
+    SKIP_FAKECHINESE="y"
+fi
 
 if [ "$SKIP_FAKECHINESE" == "y" ]; then
     $WINE "$prog_path/FFmpegFreeUI.exe"
