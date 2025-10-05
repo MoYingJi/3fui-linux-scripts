@@ -17,8 +17,6 @@ export WINEARCH="$WINE_ARCH"
 
 cp -f "$path/resources/Settings.json" "$path/settings/Settings.json"
 
-mkdir -p "$path/cache"
-
 # 安装中文字体
 
 [ "$SKIP_FAKECHINESE" == "y" ] || (

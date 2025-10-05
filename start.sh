@@ -9,13 +9,54 @@ path="$(dirname "$(realpath "$0")")"
 
 source "$path/config.conf"
 
-[ -z "$VERSION" ] && exit 1
+get_prog_path() { echo "$path/program/$1"; }
+
+is_ver_exists() {
+    local dir="$(get_prog_path "$1")"
+    [ -d "$dir" ] && [ -f "$dir/FFmpegFreeUI.exe" ]
+    return $?
+}
+
+# 自动检测版本
+
+# 检测解压到子文件夹的情况
+if [ -z "$VERSION" ] || [ "$VERSION" = "auto" ]; then
+    VERSIONS+=(
+        "FFmpegFreeUI ReadyToRun x64"
+        "FFmpegFreeUI SelfContained x64"
+        "FFmpegFreeUI ReadyToRun x86"
+        "FFmpegFreeUI SelfContained x86"
+        "FFmpegFreeUI ReadyToRun arm64"
+        "FFmpegFreeUI SelfContained arm64"
+    )
+    for ver in "${VERSIONS[@]}"; do
+        if is_ver_exists "$ver"; then
+            VERSION="$ver"
+            break
+        fi
+    done
+fi
+# 检测解压到 `program` 文件夹的情况
+if [ -z "$VERSION" ] || [ "$VERSION" = "auto" ]; then
+    if is_ver_exists ""; then
+        VERSION=""
+    else
+        if [ "$LANG" = "zh_CN.UTF-8" ]
+            then echo "错误: 无法找到程序！确保程序被正确放入！"
+            else echo "Error: Can't find program! Make sure program is put in the right place!"
+        fi
+        exit 1
+    fi
+fi
+
+
+# 一些参数
 [ -z "$WINE" ] && WINE=wine
 [ -z "$WINE_SERVER" ] && WINE_SERVER=wineserver
 [ -z "$WINE_PREFIX" ] && WINE_PREFIX="./pfx"
 [ -z "$WINE_ARCH" ] && WINE_ARCH="win64"
 
-prog_path="$path/program/$VERSION"
+prog_path="$(realpath "$(get_prog_path "$VERSION")")"
 
 # 准备
 
@@ -33,12 +74,14 @@ export WINEARCH="$WINE_ARCH"
 cd "$prog_path"
 
 if [ "$SKIP_FAKECHINESE" != "y" ] && [ ! -f "$path/fonts/fonts.conf" ]; then
-    echo "ERROR: 'fonts.conf' not found! run 'prepare.sh' first!"
-    echo "WARNING: fakechinese will be skipped!"
+    if [ "$LANG" = "zh_CN.UTF-8" ]
+        then echo "警告: 'fonts.conf' 未找到！请先运行 'prepare.sh' ！ fakechinese 将被跳过！"
+        else echo "WARNING: 'fonts.conf' not found! run 'prepare.sh' first! fakechinese will be skipped!"
+    fi
     SKIP_FAKECHINESE="y"
 fi
 
-if [ "$SKIP_FAKECHINESE" == "y" ]; then
+if [ "$SKIP_FAKECHINESE" = "y" ]; then
     $WINE "$prog_path/FFmpegFreeUI.exe"
 else
     export FONTCONFIG_FILE="$path/fonts/fonts.conf"
@@ -48,4 +91,4 @@ fi
 
 wait
 
-[ "$WINE_SERVER_KILL" == "y" ] && $WINE_SERVER -k
+[ "$WINE_SERVER_KILL" = "y" ] && $WINE_SERVER -k

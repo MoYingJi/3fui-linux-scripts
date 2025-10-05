@@ -1,8 +1,8 @@
 # 3FUI Linux Scripts
 
-本项目是 3FUI 的一键转译运行方案
+本项目是 3FUI 的一键 Wine 运行方案
 
-自动应用微软雅黑字体 提供了一系列脚本 提供了调用原生 FFmpeg 的默认设置
+自动应用中文字体，提供了一系列脚本，提供了调用原生 FFmpeg 的默认设置
 
 ## 使用方法
 
@@ -10,19 +10,17 @@
 
 ### 解压
 
-将程序的压缩包放到 `program` 文件夹下解压，并修改 `config.conf` 的 `VERSION` 为程序的文件夹名称
+将程序的压缩包放到 `program` 文件夹下解压，程序本体可以位于 `program` 文件夹的子文件夹中，也可以直接位于 `program` 文件夹
 
-如解压到 `./program/FFmpegFreeUI ReadyToRun x64/`，那么 `VERSION` 就是 `FFmpegFreeUI ReadyToRun x64`，主文件在 `./program/FFmpegFreeUI ReadyToRun x64/FFmpegFreeUI.exe` 中
-
-(本来是为多版本准备的 一般不用改 默认就是 `FFmpegFreeUI ReadyToRun x64`)
+(在子文件夹中的特性本来是为多版本准备的，但现在感觉将压缩包放到这个文件夹下并一键解压就能使文件在正确的位置，就留下来了)
 
 ### 确认配置
 
-在 `config.conf` 中确认配置 <br>
+在 `config.conf` 中确认配置 <br/>
 配置中的 wine 必须为原版 wine! 不能是 wine-staging 或 proton!
 
-调用原生 FFmpeg 需要本机有 `/usr/bin/python3` (因为有脚本是 python 写的) <br>
-默认配置下 FFmpeg 位于 `/usr/bin/ffmpeg`
+FFmpeg 二进制文件 `ffmpeg` 需要位于 `$PATH` 下 <br/>
+同时 `$PATH` 下还需要有 `python3` (因为有脚本是 Python 写的)
 
 ### 准备工作
 
@@ -38,7 +36,7 @@
 
 ## 其他问题
 
-高分辨率屏幕显示过小 则运行 winecfg.sh 然后在 "显示" 的 "屏幕分辨率" 中调高 DPI 推荐 144
+高分辨率屏幕显示过小，可以运行 `winecfg.sh` 然后在「显示」的「屏幕分辨率」中调高 DPI，推荐 144
 
 更多问题 参阅 [3FUI Linux 文档](https://github.com/Lake1059/FFmpegFreeUI/blob/main/doc/linux.md)
 
