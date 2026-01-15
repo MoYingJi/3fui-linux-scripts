@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 #shellcheck disable=SC2155,SC2164
 
 # 获取当前文件夹
@@ -62,7 +62,10 @@ prog_path="$(realpath "$(get_prog_path "$VERSION")")"
 
 mkdir -p "$path/settings"
 chmod +x "$path/scripts/run-ffmpeg.py"
-
+# fix: 如果 settings 目录为空，$path/settings/* 会展开为字面量
+if [ ! -e "$path/settings/Settings.json" ]; then
+    echo "{}" > "$path/settings/Settings.json"
+fi
 ln -sf "$path/settings/"* "$prog_path/"
 ln -sf "$path/scripts" "$prog_path"
 
